@@ -4,7 +4,7 @@
 
 CDC Diabetes Health Indicator
 
-The Diabetes Health Indicators Dataset contains healthcare statistics and lifestyle survey information about people in general along with their diagnosis of diabetes. The 35 features consist of some demographics, lab test results, and answers to survey questions for each patient. The target variable for classification is whether a patient has (1) diabetes and/or pre-diabetic, or (0) healthy.
+The Diabetes Health Indicators Dataset contains healthcare statistics and lifestyle survey information about people in general along with their diagnosis of diabetes. The 35 features consist of some demographics, lab test results, and answers to survey questions for each patient. The target variable for classification is whether a patient has a value of (1) diabetes and/or pre-diabetic, or a value of (0) healthy.
 
 Dataset is from UCI Dataset: Link: https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators
 

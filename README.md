@@ -20,7 +20,7 @@ In this capstone project, my goal is to understand the relationship between the 
 ## Understanding the Data
 
 The dataset comes with 21 attributes. There are no null values so all rows have information that can be utilized for data analysis and model evaluation.
-There are 253,680 records for us to analyze. All the attributes are numerical. Some of the data has been bucketed into categories and assigned a numerical value. The attributes that fall into these categories of bucketing are : Age, Education, Income, and General Health (GenHlth). All other attributes are binary attributes that indicate a yes or no in most cases and male vs female for sex.
+There are 253,680 records for us to analyze. All the attributes are numerical. Some of the data has been bucketed into categories and assigned a numerical value. The attributes that fall into these categories of bucketing are : Age, Education, Income, and General Health (GenHlth). The attribute related to gender (Sex) identifies the participant as Male vs. Female. All other attributes are binary attributes that indicate a yes or no.
 
 ------
 # TO BE EDITED

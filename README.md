@@ -10,25 +10,20 @@ Dataset is from UCI Dataset: Link: https://archive.ics.uci.edu/dataset/891/cdc+d
 
 <img width="1286" alt="Screenshot 2024-09-07 at 10 22 30 AM" src="https://github.com/user-attachments/assets/fa99d314-9d9c-4328-b95c-d0adb4fb2ab6">
 
+Other important documents for reference are : 
+https://www.cdc.gov/brfss/annual_data/2014/pdf/CODEBOOK14_LLCP.pdf
+https://www.cdc.gov/mmwr/volumes/66/wr/mm6643a2.htm
+
 ## Overview:
 In this capstone project, my goal is to understand the relationship between the lifstyle of the people in the US to diabetes. The dataset from CDC provides enough information about the lifestyle of both male and female participants. With this data, I want to identify patterns that can potentially increase the chances of diabetes. Ths capstone project will explore the classification models namely K Nearest Neighbor, Logistic Regression, Decision Trees, and Support Vector Machines. In the final submission, I will use hyperparametes to tune the model to determine patterns to identify patients with diabetes.
-
-
-------
-# TO BE EDITED
-
-
-## Business Understanding:
-
-Comparing_Classifiers_Portugese_Bank/CRISP-DM-BANK.pdf
-According to the article (link above), there were **17 campaigns** between **May 2008 and Nov 2010**. These phone campaings focused on offered **long-term deposits** with good interest rates. The **success** was determined if the **customer subscribed** to the long-term deposits.
-
-**The focus for the bank is to identify key attributes that can help improve their success rate and attract customers to subscribe to long-term deposits.**
 
 ## Understanding the Data
 
 The dataset comes with 21 attributes. There are no null values so all rows have information that can be utilized for data analysis and model evaluation.
-There are 41188 records for us to analyze. Few of the attributes are numeric while the others are categorical.
+There are 253,680 records for us to analyze. All the attributes are numerical. Some of the data has been bucketed into categories and assigned a numerical value. The attributes that fall into these categories of bucketing are : Age, Education, Income, and General Health (GenHlth). All other attributes are binary attributes that indicate a yes or no in most cases and male vs female for sex.
+
+------
+# TO BE EDITED
 
 The dataset is broken into 4 sections:
 

@@ -10,15 +10,13 @@ Dataset is from UCI Dataset: Link: https://archive.ics.uci.edu/dataset/891/cdc+d
 
 <img width="1286" alt="Screenshot 2024-09-07 at 10 22 30 AM" src="https://github.com/user-attachments/assets/fa99d314-9d9c-4328-b95c-d0adb4fb2ab6">
 
-
-# Portugese Bank : Direct Marketing Campaign 
-### Determine parameters that can help future campaign to attract client to subscribe to a term deposit 
-**Assignment:** Compare the performance of the classifiers (k-nearest neighbors, logistic regression, decision trees, and support vector machines) and share observations & recommendations
-
-
-
 ## Overview:
-This is a practical application assignment as part of the UC Berkeley Haas AI-ML Course. The goal is to compare the performance of the classifiers (k-nearest neighbors, logistic regression, decision trees, and support vector machines). The dataset is related to the marketing of bank products over the telephone and avaialble on the UCI Website
+In this capstone project, my goal is to understand the relationship between the lifstyle of the people in the US to diabetes. The dataset from CDC provides enough information about the lifestyle of both male and female participants. With this data, I want to identify patterns that can potentially increase the chances of diabetes. Ths capstone project will explore the classification models namely K Nearest Neighbor, Logistic Regression, Decision Trees, and Support Vector Machines. In the final submission, I will use hyperparametes to tune the model to determine patterns to identify patients with diabetes.
+
+
+------
+# TO BE EDITED
+
 
 ## Business Understanding:
 

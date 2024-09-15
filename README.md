@@ -1,7 +1,5 @@
 # CDC-Diabetes-Health-Indicator
 
-# DRAFT - Still in the works - 
-
 CDC Diabetes Health Indicator
 
 The Diabetes Health Indicators Dataset contains healthcare statistics and lifestyle survey information about people in general along with their diagnosis of diabetes. The 35 features consist of some demographics, lab test results, and answers to survey questions for each patient. The target variable for classification is whether a patient has a value of (1) diabetes and/or pre-diabetic, or a value of (0) healthy.
@@ -95,10 +93,6 @@ To create standardized results for each of the model, I created a series of func
 - **Print Confusion Matrix:** This will print the confusion matrix and the associated values of True Positive, True Negative, False Positive, and False Negative
 - **Print ROC-AUC Scores:** This will plot the ROC-AUC Curve and print the ROC-AUC score.
 - **Evaluate Function:** This will use either the default setting or the hyperparameter to call the model. Perform the model fit, predict, and calculate and print the processing time, performance, confusion matrix, and the ROC-AUC curve and scores.
-
-------
-# TO BE EDITED
-
 
 ### Model Comparison
 

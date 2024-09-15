@@ -22,113 +22,68 @@ In this capstone project, my goal is to understand the relationship between the 
 The dataset comes with 21 attributes. There are no null values so all rows have information that can be utilized for data analysis and model evaluation.
 There are 253,680 records for us to analyze. All the attributes are numerical. Some of the data has been bucketed into categories and assigned a numerical value. The attributes that fall into these categories of bucketing are : Age, Education, Income, and General Health (GenHlth). The attribute related to gender (Sex) identifies the participant as Male vs. Female. All other attributes are binary attributes that indicate a yes or no.
 
-------
-# TO BE EDITED
+The dataset is broken into the following items:
 
-The dataset is broken into 4 sections:
+#### Patient Information
+- Age - 13-level age category (_AGEG5YR see codebook)
+- Sex - Male or Female
+- Education - Education level (EDUCA see codebook) scale 1-6
+- Income - Income scale (INCOME2 see codebook) scale 1-8
 
-#### Bank Client data
-- Age
-- Job : type of job
-- marital : marital status
-- education
-- default: has credit in default?
-- housing: has housing loan?
-- loan: has personal loan?
+#### Patient Health Information
+- GenHlth              :  5 unique values. They are : [1, 2, 3, 4, 5]  Would you say that in general your health is: scale 1-5
+- HighBP               :  2 unique values. They are : [0, 1]
+- HighChol             :  2 unique values. They are : [0, 1]
+- CholCheck            :  2 unique values. They are : [0, 1]
+- Smoker               :  2 unique values. They are : [0, 1]
+- Stroke               :  2 unique values. They are : [0, 1]
+- HeartDiseaseorAttack :  2 unique values. They are : [0, 1]
+- PhysActivity         :  2 unique values. They are : [0, 1]
+- AnyHealthcare        :  2 unique values. They are : [0, 1]
+- NoDocbcCost          :  2 unique values. They are : [0, 1]
+- DiffWalk             :  2 unique values. They are : [0, 1]
 
-#### Information related with the last contact of the current campaign
-- contact: contact communication type
-- month: last contact month of year
-- day_of_week: last contact day of the week
-- duration: last contact duration, in seconds
+- Fruits               :  2 unique values. They are : [0, 1]
+- Veggies              :  2 unique values. They are : [0, 1]
+- HvyAlcoholConsump    :  2 unique values. They are : [0, 1]
 
-#### Other Attributes
-- campaign: number of contacts performed during this campaign and for this client
-- pdays: number of days that passed by after the client was last contacted from a previous campaign
-- previous: number of contacts performed before this campaign and for this client
-- poutcome: outcome of the previous marketing campaign
+- MentHlth             : 31 unique values. 
+- PhysHlth             : 31 unique values. 
+- BMI                  : 84 unique values. 
 
-#### Social and Economic context attributes
-- emp.var.rate: employment variation rate - quarterly indicator (numeric)
-- cons.price.idx: consumer price index - monthly indicator (numeric)
-- cons.conf.idx: consumer confidence index - monthly indicator (numeric)
-- euribor3m: euribor 3 month rate - daily indicator (numeric)
-- nr.employed: number of employees - quarterly indicator
+#### Unique values for Patient Info
+- Sex                  :  2 unique values. They are : [0, 1]
+- Age                  : 13 unique values. They are : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+- Education            :  6 unique values. They are : [1, 2, 3, 4, 5, 6]
+- Income               :  8 unique values. They are : [1, 2, 3, 4, 5, 6, 7, 8]
 
 #### Target Variable
-- y - has the client subscribed a term deposit? (yes or no)
+- Diabetes_binary - has the patient been diagnosed as Diabetic or Not (0 or 1)
 
 #### Missing Data needing special attention
-- There are a few records that has a value of 'unknown' and it represents missing data. The attributes with these missing values are: `job`, `education`, `default`, `housing`, and `loan`.
-- The attribute `pdays` has a value of 999 indicating that the client was not previously contacted
-- The attribute `duration` highly affects the output target (e.g., if duration=0 then y='no'). Yet, the duration is not known before a call is performed. Also, after the end of the call y is obviously known. Thus, this input should only be included for benchmark purposes and should be discarded if the intention is to have a realistic predictive model.
+- There are no missing data in any of the attributes
 
 ## Exploratory Data Analysis
 
-There are a total of 13 attributes that have less than or equal to 12 unique values. These attributes are:
-```Column          Count
-contact         2
-default         3
-housing         3
-loan            3
-poutcome        3
-marital         4
-day_of_week     5
-education       8
-previous        8
-month           10
-emp_var_rate    10
-nr_employed     11
-job             12
-```
-#### Day of the Week
-Looking at the `day_of_week`, we find that it is equally distributed. There is no uniqueness that differentiates any specific day of the week. We can derive that the data will not have any weightage on the model prediction. This column will be removed from the dataframe and not be part of further analysis
+There are a total of 14 attributes with only two values. 
 
-<img width="748" alt="image" src="https://github.com/user-attachments/assets/86f2a8f4-4dce-4230-a7c2-349a9522f61b">
+![Patient Data - Binary Attributes](https://github.com/user-attachments/assets/c6b685a9-afcf-4964-a963-f408b29bdd4c)
 
-#### Contact
-The contact values are `cellular` and `telephone`. We find that 64% of the customers have `cellular` compared to 36% with regular telephone (landline) service. Further analysis shows that this celular data has a correlation to customers accepting the marketing promotion.
+####  Breaking down the data by Males and Felames, we get:
 
-<img width="593" alt="image" src="https://github.com/user-attachments/assets/772c9b8a-fed2-4c05-b5fc-08385f2bd81a">
-
-#### Default
-One of the attribute is to checks if the customer has their credit in default. 
-<img width="596" alt="image" src="https://github.com/user-attachments/assets/226c6f5a-8219-4f83-9469-e5f2562d5ffa">
-
-
-<img width="703" alt="image" src="https://github.com/user-attachments/assets/8ac42fb2-70e0-46b6-bf8b-193309ef5f8b">
-
-As you can see from the above charts, the atrribute `default` has some correlation to customers accepting the marketing promotion.
-
-#### Pair Plot of all Categorical attributes with Target Variable
-
-Here's a view of the pair plot when compared to the target variables
-
-![Pair Plot Portugese Bank](https://github.com/user-attachments/assets/a54c925a-dc38-412e-a2e3-8b90ea1e0733)
-
-## Feature Engineering
-
-Now that we have a good idea of all the attributes, let's review the categorical attributes and see if we can encode them.
-
-#### Encoding Categorical Attributes
-We have a few attributes that can be encoded. To reduce the complexity, I converted these using Label Encoding.
-
-contact         2
-default         3
-housing         3
-loan            3
-poutcome        3
-marital         4
-education       8
-month           10
-job             12
-y               2 (Target Variable)
+![Patient Information for Binary Attributes](https://github.com/user-attachments/assets/22a18cae-317f-46e4-9b26-c586efcfe358)
 
 #### Pearson's Correlation of all attributes
 
-With the new set of numerical attributes, I ran the Pearson Correlation. Below is the result of the correlation between all the numerical variables.
+I ran the Pearson Correlation. Below is the result of the correlation between all the numerical variables.
 
-![Pearsons Correlation Portugese Bank](https://github.com/user-attachments/assets/f00126e7-a9a0-4735-b30a-0844a80aa3a6)
+![Pearsons Correlation - Patient Data](https://github.com/user-attachments/assets/58705fa8-c1de-40ca-ba62-086ab24ba933)
+
+## Principal Component Analysis
+
+<img width="931" alt="Screenshot 2024-09-15 at 2 10 27 AM" src="https://github.com/user-attachments/assets/debff7a5-f817-4145-b976-53c508f7219e">
+
+<img width="931" alt="Screenshot 2024-09-15 at 2 10 16 AM" src="https://github.com/user-attachments/assets/baedd780-2ddc-4bdd-b9b2-66457774ee2d">
 
 ## Model Evaluation
 
@@ -141,17 +96,17 @@ To create standardized results for each of the model, I created a series of func
 - **Print ROC-AUC Scores:** This will plot the ROC-AUC Curve and print the ROC-AUC score.
 - **Evaluate Function:** This will use either the default setting or the hyperparameter to call the model. Perform the model fit, predict, and calculate and print the processing time, performance, confusion matrix, and the ROC-AUC curve and scores.
 
+------
+# TO BE EDITED
+
+
 ### Model Comparison
 
 I created a baseline of the model using `Dummy Classifer` and then evaluated the following models without any hyperparameter tuning.
 
 The Confusion Matrix for the Dummy Classifier (as expected) is shown below.
 
-<img width="596" alt="image" src="https://github.com/user-attachments/assets/5d942717-1f6b-4db6-b006-2688d69df0b8">
-
-The ROC-AUC Curve for the Dummy Classifier will be a straight line in the middle as shown below.
-
-<img width="877" alt="image" src="https://github.com/user-attachments/assets/b97b730f-7ef0-407b-8a89-a8ecdf288fce">
+<img width="700" alt="Screenshot 2024-09-15 at 3 02 10 AM" src="https://github.com/user-attachments/assets/98e3117a-4263-4cca-90c8-98014fc45967">
 
 ### Initial Model Comparison : Without Hyperparameter Tuning (using Default Settings of each model)
 
@@ -167,39 +122,48 @@ Based on the analysis of the refined dataset, the results from these models were
 
 <img width="1390" alt="image" src="https://github.com/user-attachments/assets/32687bc7-d847-4171-9d1b-f64c7d7dd710">
 
-#### Confusion Matrix using Default Settings for each Model
+#### Confusion Matrix using Default Settings for each Model - for Males
 
 The associated Confusion Matrix for these models (excluded Dummy Classifier) are as shown below. 
 
-![Confusion Matrix Comparison for 4 Models](https://github.com/user-attachments/assets/f21e0700-a6b3-4efb-9450-9257ec53eda2)
+![Confusion Matrix Comparison for 3 Models-Males](https://github.com/user-attachments/assets/3a198cfa-709b-4b7f-970e-f6a84cc68e34)
 
-#### ROC AUC Curve using Default Settings for each Model
+#### Confusion Matrix using Default Settings for each Model - for Females
+
+The associated Confusion Matrix for these models (excluded Dummy Classifier) are as shown below. 
+
+![Confusion Matrix Comparison for 3 Models-females](https://github.com/user-attachments/assets/a88bf9d4-27a5-4e72-8dc4-aed45d066205)
+
+#### ROC AUC Curve using Default Settings for each Model - for Males
 
 The associated ROC AUC Curve for each of these models (excluding Dummy Classifier) are as shown below.
 
-![ROC-AUC Curve Comparison for 4 Models](https://github.com/user-attachments/assets/1a1a8d48-67e9-4d45-ab17-3af2d0660840)
+![Optimized ROC-AUC Curve Comparison for 3 Models - Males](https://github.com/user-attachments/assets/8e702c7a-2987-4bf9-948a-ac0a042d6bd6)
+
+#### ROC AUC Curve using Default Settings for each Model - for Females
+
+The associated ROC AUC Curve for each of these models (excluding Dummy Classifier) are as shown below.
+
+![Optimized ROC-AUC Curve Comparison for 3 Models - Females](https://github.com/user-attachments/assets/8a405f2b-9173-4a18-b8e5-2aadca269652)
+
+#### Summary Scores for Males
+
+<img width="1237" alt="Screenshot 2024-09-15 at 3 08 03 AM" src="https://github.com/user-attachments/assets/2d591f35-7b39-4ab9-ae0a-71f7e9293b33">
+
+#### Summary Scores for Females
+
+<img width="1237" alt="Screenshot 2024-09-15 at 3 09 11 AM" src="https://github.com/user-attachments/assets/9176ef92-6e2c-4a06-ab7e-73edb4e2f30b">
 
 #### Observation:
-- Based on the results shown above, we can see that Logistic Regression and Support Vector Machines have a very good accuracy score of 0.91  
-- However, we also see that Support Vector Machines takes 30 seconds to process 7186 records while Logistic Regression takes only 0.15 seconds for 7136 records.  
-- Decision Tree Classifer and K Nearest Neighbor have a fairly lower accuracy score with Decision Tree Classifier getting fewer items correct.  
-- Looking at the performance, K Nearest Neighbor has the best time while maintaining a competitive accuracy score. 
-- Overall, I would recommend Logistic Regresion as the choice of model if we were to scale the test to a bigger dataset as the accuracy score of 0.91 and the ROC-AUC curve is 0.93
+- Based on the results shown above, we can see that Logistic Regression has a very good accuracy score of 0.87  
+- Decision Tree Classifer has a lower test accuracy score of 0.81 but the training scores is 1.00. The recall score is much higher for Decision Tree  
+- Looking at the performance, K Nearest Neighbor has the best training time while maintaining a competitive accuracy score. However, the test timing is much higher
+- Overall, I would recommend Logistic Regresion as the choice of model if we were to scale the test to a bigger dataset as the accuracy score of 0.87 and the ROC-AUC curve is 0.83 is comparatively much higher than all others.
 
 #### Opportunity:
 - Improve the Recall Score as they are ranging from 0.30 (SVM) to 0.52 (Decision Tree)
 
 ### Improved Model Comparison : With Hyperparameter Tuning
-
-#### Feature Engineering before model comparison
-
-During the initial run, I found that some of the features do not have a strong correlation and can be eliminated. This can improve the performance when we tune the hyperparameters.
-
-#### Features Dropped
-I was able to drop the following features before hyperparameter tuning
-
-- **housing** : The ratio of customers accepting an offer is a constant 11% irrespective of whether they have a housing loan or not
-- **loan** : Similarly, the ratio of customers accepting an offer is a constant 11% irrespective of whether they have a personal loan or not
 
 #### Hyperparameter Selected:
 
@@ -230,48 +194,56 @@ I was able to drop the following features before hyperparameter tuning
 ```
 - **Support Vector Machines:**
 
-```
-    'Support Vector Machines': {
-        'classifier__C': [0.1, 1, 10, 100],
-        'classifier__kernel': ['linear', 'rbf'],
-        'classifier__gamma': ['scale', 'auto']
-```
-
+Due to processing time challenges, I excluded processing SVC.
 
 With the further refined dataset, below are the results for the four models:
 
 #### Results from Model Evaluation using Hyperparameter Tuning for each Model
 
-<img width="1398" alt="image" src="https://github.com/user-attachments/assets/c4b6517a-44bc-43ba-b280-ee25a986201d">
+#### For Males:
 
 #### Confusion Matrix using Hyperparameter Tuning for each Model
 
 The associated Confusion Matrix for these models are as shown below.
 
-![Optimized Confusion Matrix Comparison for 4 Models](https://github.com/user-attachments/assets/5c62c363-dd05-4670-9950-47f8eb22a601)
+![Optimized Confusion Matrix Comparison for 3 Models - Males](https://github.com/user-attachments/assets/6b526c54-7f41-4ec2-95e6-3364f9fbfe53)
 
 #### ROC AUC Curve using Hyperparameter Tuning for each Model
 
 The associated ROC AUC Curve for each of these models are as shown below.
 
-![Optimized ROC-AUC Curve Comparison for 4 Models](https://github.com/user-attachments/assets/0ddc75dc-d685-4831-aab4-3b0c9304e3d9)
+![Optimized ROC-AUC Curve Comparison for 3 Models - Males](https://github.com/user-attachments/assets/b80485fc-990b-4c1f-897e-b88340a34da0)
+
+#### For Females:
+
+#### Confusion Matrix using Hyperparameter Tuning for each Model
+
+The associated Confusion Matrix for these models are as shown below.
+
+![Optimized Confusion Matrix Comparison for 3 Models - Females](https://github.com/user-attachments/assets/f9f77073-faa2-47cd-b8d7-5a8b033d790e)
+
+#### ROC AUC Curve using Hyperparameter Tuning for each Model
+
+The associated ROC AUC Curve for each of these models are as shown below.
+
+![Optimized ROC-AUC Curve Comparison for 3 Models - Females](https://github.com/user-attachments/assets/af3ee291-cecb-47cd-80de-ab5a0accd19e)
 
 #### Observation:
-Adding hyperparameters, I was able to see a much better result for all 4 models. 
-- The accuracy ratio improved from **0.89** to **0.91 and 0.92** with the ROC-AOC score pushing from **0.7x** to **0.91 and 0.92**.
+Adding hyperparameters, I was able to see a much better result for all 3 models. 
+- The test accuracy ratio improved from **0.81** to **0.87** with the ROC-AOC score pushing from **0.7x** to **0.8x**.
 - However, as we can see, the hyperparameters comes with a cost.
-- The time to process this takes longer with SVM taking more than **30 minutes** to process compared to earlier process within **30 seconds**.
+- The time to process this takes longer with kNN Classifier taking more than **13 minutes** to process compared to earlier process less than **1 seconds**.
 
 ## Recommendation:
-Use Logistic Regression with hyperparameters as the precision is higher, recall is higher, and ROC AUC score is also higher. The overall time it takes to process Logistic Regression is much lower than all others making it the best option among the 4 models.
+Use Logistic Regression with hyperparameters as the precision is higher, recall is higher, and ROC AUC score is also higher. The overall time it takes to process Logistic Regression is much lower than all others making it the best option among the 3 models
 
 ## Future Questions:
-A few questions we can ask about the dataset and the campaign are:
-1. How many days before the campaign should the bank contact the customers. The duration of the call and the pdays and previous days in the current dataset is not providing enough information to determine the success of the campaign
-2. While we see a negative correlation around employment variation rate, it does not translate to any meaningful decisions.
-3. There is a good correlation between the duration of the call and contact type. Customers with cellphones show higher reach. The campaign can focus on improving the success by focusing on customers with cellphones
+A few questions we can ask about the dataset are:
+1. Can we break down the analysis by age , education level, and gender. Would that provide a better result
+2. Can we identify specific features by using feature importance to determine the critical features that help determine whether a patient is diabetic or not
 
 ## Usage
+This model can be used to learn more about the patients and determine the relationship between their lifestyle and diabetes.
 
 ### Requirements:
 - **Python 3.x**
@@ -294,27 +266,16 @@ You can read all about this here: https://netflixtechblog.com/notebook-innovatio
 
 You can clone my project from this repository
 
-    https://github.com/FerndzJoe/Comparing_Classifiers_Portugese_Bank
+    https://github.com/FerndzJoe/CDC-Diabetes-Health-Indicator
 
 My Jupyter Notebook can be directly accessed using this:
 
-    https://github.com/FerndzJoe/Comparing_Classifiers_Portugese_Bank/blob/main/JF_Practical%20Application_III_Comparing%20Classifiers.ipynb
+    https://github.com/FerndzJoe/CDC-Diabetes-Health-Indicator/blob/main/Capstone%20Project%20-%20CDC%20Diabetes%20Health%20Indicator.ipynb
 
-## Repository Structure
-- `data/bank-additional-full.csv`: Contains dataset used in the analysis.
+## Repository Structure  
 
-  (https://github.com/FerndzJoe/Comparing_Classifiers_Portugese_Bank/tree/main/data/bank-additional-full.csv)
-  
-- `data/bank-additional-names.txt`: Contains the information about the dataset
+- `Capstone Project - CDC Diabetes Health Indicator.ipynb`: Contains the Jupyter Notebook with detailed code including comments and analysis.
 
-  (https://github.com/FerndzJoe/Comparing_Classifiers_Portugese_Bank/tree/main/data/data/bank-additional-names.txt)
-
-- `CRISP-DM-BANK.pdf`: Contains the CRISM-DM Research paper about the dataset and the detailed research done by the authors
-
-  (https://github.com/FerndzJoe/Comparing_Classifiers_Portugese_Bank/blob/main/CRISP-DM-BANK.pdf)
-
-- `JF_Practical Application_III_Comparing Classifiers.ipynb`: Contains the Jupyter Notebook with detailed code including comments and analysis.
-
-  (https://github.com/FerndzJoe/Comparing_Classifiers_Portugese_Bank/blob/main/JF_Practical%20Application_III_Comparing%20Classifiers.ipynb)
+  (https://github.com/FerndzJoe/CDC-Diabetes-Health-Indicator/blob/main/Capstone%20Project%20-%20CDC%20Diabetes%20Health%20Indicator.ipynb)
 
 - `README.md`: Summary of findings and link to notebook

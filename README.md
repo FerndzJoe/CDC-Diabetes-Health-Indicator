@@ -274,12 +274,12 @@ You can clone my project from this repository
 
 My Jupyter Notebook can be directly accessed using this:
 
-    https://github.com/FerndzJoe/CDC-Diabetes-Health-Indicator/blob/main/Capstone%20Project%20-%20CDC%20Diabetes%20Health%20Indicator.ipynb
+    https://github.com/FerndzJoe/CDC-Diabetes-Health-Indicator/blob/main/Capstone%20Project%20-%20CDC%20Diabetes%20Health%20Indicator-FINAL.ipynb
 
 ## Repository Structure  
 
 - `Capstone Project - CDC Diabetes Health Indicator.ipynb`: Contains the Jupyter Notebook with detailed code including comments and analysis.
 
-  (https://github.com/FerndzJoe/CDC-Diabetes-Health-Indicator/blob/main/Capstone%20Project%20-%20CDC%20Diabetes%20Health%20Indicator.ipynb)
+  ([https://github.com/FerndzJoe/CDC-Diabetes-Health-Indicator/blob/main/Capstone%20Project%20-%20CDC%20Diabetes%20Health%20Indicator.ipynb](https://github.com/FerndzJoe/CDC-Diabetes-Health-Indicator/blob/main/Capstone%20Project%20-%20CDC%20Diabetes%20Health%20Indicator-FINAL.ipynb))
 
 - `README.md`: Summary of findings and link to notebook

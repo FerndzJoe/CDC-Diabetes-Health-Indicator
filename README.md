@@ -231,6 +231,16 @@ Adding hyperparameters, I was able to see a much better result for all 3 models.
 ## Recommendation:
 Use Logistic Regression with hyperparameters as the precision is higher, recall is higher, and ROC AUC score is also higher. The overall time it takes to process Logistic Regression is much lower than all others making it the best option among the 3 models
 
+## Results from Ensemble Techniques:
+<img width="811" alt="Screenshot 2024-10-08 at 10 15 42 AM" src="https://github.com/user-attachments/assets/a5ed1882-77cc-40bd-83ce-b416dfea588b">
+
+## Conclusion: 
+Looking at the results from the Ensemble techniques, we see eXtreme Graident Boosting (XGB) Classifier providing the best results with a higher Precision and low Recall and high Accuracy.
+
+Also, the processing time for XGBoost was much lower than the other ones. While Random Forest did give a good score, it may have done a lot more over fitting and my recommendation is to ignore that model.
+
+Convert the XGBoost Classifier solution as an output and work on ML Operations to implement this as a production ready solution.
+
 ## Future Questions:
 A few questions we can ask about the dataset are:
 1. Can we break down the analysis by age , education level, and gender. Would that provide a better result
